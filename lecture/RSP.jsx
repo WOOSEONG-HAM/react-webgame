@@ -26,7 +26,7 @@ const RSP = () => {
   const [imgCoord, setImgCoord] = useState(rspCoords.바위);
   const [score, setScore] = useState(0);
   const interval = useRef();
-  useEffect(()=>{ //useEffect는 화면이 바뀌고 나서 작동하고 useLayoutEffect는 화면크기 조절전에 작동한다.
+  useEffect(()=>{ //useEffect는 화면이 바뀌고 나서 작동하고 useLayoutEffect는 화면크기 조절전에 작동.
     interval.current = setInterval(changeHand, 100);
     return() => { //componentWillUnmount 역할
       clearInterval(interval.current);
