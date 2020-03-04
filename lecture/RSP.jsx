@@ -33,13 +33,23 @@ const RSP = () => {
     }
   }, [imgCoord]);
 
+const changeHand = () => {
+  if(imgCoord === rspCoords.바위){
+    setImgCoord(rspCoords.가위);
+  }else if(imgCoord === rspCoords.가위){
+    setImgCoord(rspCoords.보);
+  }else if(imgCoord === rspCoords.보){
+    setImgCoord(rspCoords.바위);
+  }
+};
+
 const onClickBtn = (choice) => () => {
   clearInterval(interval.current);
   const myScore = scores[choice];
   const cpuSorce = scores[computerChoice(imgCoord)];
   const diff = myScore - cpuSorce;
   if(diff === 0){
-    setResult = '비겼습니다.'
+    setResult('비겼습니다.');
   }else if([-1, 2].includes(diff)){
     setResult('이겼습니다.');
     setScore((prevScore) => prevScore + 1);
@@ -49,18 +59,9 @@ const onClickBtn = (choice) => () => {
   }
   setTimeout(() => {
     interval.current = setInterval(changeHand, 100);
-  }, 2000);
+  }, 1000);
 };
 
-const changeHand = () => {
-  if(imgCoord === rspCoords.바위){
-    setImgCoord(rspCoords.가위);
-  }else if(imgCoord === rspCoords.가위){
-    setImgCoord(rspCoords.보);
-  }else if(imgCoord === rspCoords.보){
-    setImgCoord(rspCoords.바위);
-  }
-}
   return(
     <>
       <div id="computer" style={{ background: `url(https://en.pimg.jp/023/182/267/1/23182267.jpg) ${imgCoord} 0` }} />
@@ -73,6 +74,6 @@ const changeHand = () => {
       <div>현재 {score}점</div>
     </>
   );
-}
+};
 
 export default RSP;
